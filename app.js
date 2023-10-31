@@ -170,6 +170,7 @@ function rotateTetrimino() {
 }
 
 function deleteFullRows() {
+    let fullRowFound = false;
     // Démarrer à partir de la rangée du bas et remonter
     for (let y = 20; y > 0; y--) {
         let cells = gameBoard.querySelectorAll(`[style*="grid-row-start: ${y};"]`);
@@ -194,6 +195,9 @@ function deleteFullRows() {
                 }
             }
         }
+
+        // au moins une ligne complète
+        fullRowFound = true;
     }
 }
 
@@ -226,9 +230,8 @@ function moveDown() {
         let cells = gameBoard.querySelectorAll('.tetrimino');
         for (let i = 0; i < cells.length; i++) {
             cells[i].classList.add('stopped');
+            deleteFullRows();
         }
-
-        deleteFullRows();
 
         // utiliser setTimeout pour différez la création de la nouvelle pièce
         setTimeout(() => {

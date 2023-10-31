@@ -5,7 +5,9 @@ window.onload = function () {
     // Appuyez sur la barre d'espace pour démarrer le jeu
 
     document.body.onkeyup = function (e) {
-        if (e.key === ' ') { // La touche espace a le code de touche 32
+        score = 0;
+        document.getElementById('score').innerText = score;
+        if (e.key === ' ') {
             if (gameOverScreen.style.display === 'flex') {
                 gameOverScreen.style.display = 'none';
             }
@@ -96,6 +98,8 @@ window.onload = function () {
     }
 
     function restartGame() {
+        score = 0;
+        document.getElementById('score').innerText = score;
         // supprimer tous les tetriminos
         eraseTetrimino();
 
@@ -204,12 +208,15 @@ window.onload = function () {
 
     function deleteFullRows() {
         let fullRowFound = false;
+        let numberOfDeletedRows = 0;
+
         // Démarrer à partir de la rangée du bas et remonter
         for (let y = 20; y > 0; y--) {
             let cells = gameBoard.querySelectorAll(`[style*="grid-row-start: ${y};"]`);
 
             // Si la rangée contient 10 cellules, elle est pleine
             if (cells.length === 10) {
+                numberOfDeletedRows++;
                 // Supprimer tous les cellules de cette rangée
                 for (let i = 0; i < cells.length; i++) {
                     cells[i].remove();
@@ -226,6 +233,13 @@ window.onload = function () {
                             aboveCells[i].style.gridRowStart = yAbove + 1;
                         }
                     }
+                }
+
+                // Mise à jour du score
+                if (numberOfDeletedRows === 4) {
+                    updateScore(100);
+                } else {
+                    updateScore(10 * numberOfDeletedRows);
                 }
             }
 
@@ -278,9 +292,18 @@ window.onload = function () {
         }
     }
 
+    let score = 0;
+
+    function updateScore(points) {
+        score += points;
+        document.getElementById('score').innerText = score;
+    }
+
 // si la touche échap est pressée, appeler la fonction restartGame
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
+            score = 0;
+            document.getElementById('score').innerText = score;
             document.querySelector('#start-screen').style.display = 'flex';
             restartGame();
         }

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -60,4 +66,17 @@ main {
     border-radius: 10px;
     z-index: 999;
     background-color: #000;
+}
+
+.cmd {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 50%;
+    border: solid 1px #d4ff93;
+    padding: 25px;
+}
+
+.cmd p {
+    margin: 10px 20px
 }

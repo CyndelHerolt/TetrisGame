@@ -5,9 +5,9 @@ window.onload = function () {
     // Appuyez sur la barre d'espace pour démarrer le jeu
 
     document.body.onkeyup = function (e) {
-        score = 0;
-        document.getElementById('score').innerText = score;
         if (e.key === ' ') {
+            score = 0;
+            document.getElementById('score').innerText = score;
             if (gameOverScreen.style.display === 'flex') {
                 gameOverScreen.style.display = 'none';
             }
@@ -98,8 +98,6 @@ window.onload = function () {
     }
 
     function restartGame() {
-        score = 0;
-        document.getElementById('score').innerText = score;
         // supprimer tous les tetriminos
         eraseTetrimino();
 
@@ -302,14 +300,14 @@ window.onload = function () {
 // si la touche échap est pressée, appeler la fonction restartGame
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-            score = 0;
-            document.getElementById('score').innerText = score;
             document.querySelector('#start-screen').style.display = 'flex';
             restartGame();
         }
     });
 
     function gameOver() {
+        let finalScore = document.querySelector('#final-score');
+        finalScore.innerText = score;
         let cells = document.querySelectorAll('.tetrimino');
         for (let i = 0; i < cells.length; i++) {
             if (cells[i].style.gridRowStart === '1') {

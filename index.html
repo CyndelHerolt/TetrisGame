@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Tetris</title>
+    <meta charset="UTF-8">
+    <title>TETRIS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="start-screen">
-    <h1>Tetris</h1>
+    <h1>TETRIS</h1>
+    <div class="cmd">
+        <p>ROTATE: ↑</p>
+        <p>MOOVE: ← →</p>
+        <p>SOFT DROP: ↓</p>
+        <p>INSTANT RESTART: Space</p>
+        <p>BACK TO MENU: Esc</p>
+    </div>
     <p id="start-btn">PRESS SPACE TO START</p>
 </div>
 <div id="game-over">
     <h1>Game Over</h1>
-    <div id="score-board">
-        Score: <span id="score">0</span>
-    </div>
+    <p>
+        Score: <span id="final-score">0</span>
+    </p>
     <p id="restart-btn">PRESS SPACE TO RESTART</p>
 </div>
 <main>
-    <h1>Tetris</h1>
+    <h1>TETRIS</h1>
     <div id="score-board">
         Score: <span id="score">0</span>
     </div>
